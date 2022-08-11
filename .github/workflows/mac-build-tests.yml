@@ -21,6 +21,7 @@ jobs:
           - 2020.3.24f1
         targetPlatform:
           - StandaloneOSX # Build a MacOS executable
+          - iOS
 
     steps:
       ###########################
@@ -36,9 +37,9 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: ${{ matrix.projectPath }}/Library
-          key: Library-${{ matrix.projectPath }}-macos-${{ matrix.targetPlatform }}
+          key: Library-${{ matrix.projectPath }}-${{ runner.os }}-${{ matrix.targetPlatform }}
           restore-keys: |
-            Library-${{ matrix.projectPath }}-macos-
+            Library-${{ matrix.projectPath }}-${{ runner.os }}-
             Library-
 
       ###########################
@@ -69,6 +70,6 @@ jobs:
       ###########################
       - uses: actions/upload-artifact@v2
         with:
-          name: Build MacOS (${{ matrix.unityVersion }})
+          name: Build ${{ matrix.targetPlatform }} (${{ matrix.unityVersion }})
           path: build
           retention-days: 14

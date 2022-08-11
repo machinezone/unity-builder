@@ -42,13 +42,15 @@ class SetupMac {
       case 'Android':
         command += '--module android ';
         break;
-      case 'MacOS':
+      case 'StandaloneOSX':
         command += '--module mac-il2cpp ';
         break;
       case 'WebGL':
         command += '--module webgl ';
         break;
       default:
+        // Consider adding support for all valid targetPlatforms
+        // https://docs.unity3d.com/ScriptReference/BuildTarget.html
         throw new Error(`Unsupported module for target platform: ${targetPlatform}.`);
     }
 
